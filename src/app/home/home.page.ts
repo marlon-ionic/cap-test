@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,18 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+
+  constructor(private iab: InAppBrowser) { }
+
+  ionViewDidEnter(){
+    this.launch();
+  }
+
+  launch() {
+    const browser = this.iab.create('https://ionicframework.com/', '_blank', {
+      hideurlbar:'yes',
+      hidenavigationbuttons: 'yes'
+    });
+  }
 
 }
